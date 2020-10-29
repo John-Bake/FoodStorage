@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     //Chad comment
     //This is a comment from Nathan Kempton.
     //This is John's comment
-    /*This is Ricardo's comment.*/
+    /*This is Ricardo's comment. haha*/
     //merge for whatever
     //For kicks and giggles.
     //Testing merge conflict resolution
