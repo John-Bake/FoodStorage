@@ -14,4 +14,5 @@ public class MainActivity extends AppCompatActivity {
     //Chad comment
     //This is a comment from Nathan Kempton.
     //This is John's comment
+    /*This is Ricardo's comment*/
 }
