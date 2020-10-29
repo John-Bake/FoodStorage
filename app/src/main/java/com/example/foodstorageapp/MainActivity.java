@@ -21,4 +21,6 @@ public class MainActivity extends AppCompatActivity {
     //Nathan can't wait his turn
     //this is a comment
     //one change
+    /*This is Ricardo's comment.*/
+    //merge for whatever
 }
