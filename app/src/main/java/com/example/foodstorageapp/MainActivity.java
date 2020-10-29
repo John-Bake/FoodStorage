@@ -20,4 +20,5 @@ public class MainActivity extends AppCompatActivity {
     //Testing merge conflict resolution
     //Nathan can't wait his turn
     //this is a comment
+    //one change
 }
