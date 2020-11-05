@@ -1,22 +1,21 @@
 package com.example.foodstorageapp;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class InventoryList<storageItem> {
+public class InventoryList {
 
-    private List<StorageItem> inventory;
+        //using ArrayList type as multiple threads can access simultaneously
+    private ArrayList<StorageItem> inventory;
 
-    StorageItem storageItem = new StorageItem();
-
-    public StorageItem getItem(storageItem) {
-        return this.storageItem;
+    public StorageItem getItem(ArrayList<StorageItem> inventory) {
+        return null;
     }
 
+    /*
     public void addItem(List<StorageItem>) {
-
     }
-
     public void removeItem(List<StorageItem>) {
-
     }
+    */
+
 }
