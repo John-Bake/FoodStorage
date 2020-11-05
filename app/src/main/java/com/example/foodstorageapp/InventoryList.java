@@ -4,11 +4,18 @@ import java.util.ArrayList;
 
 public class InventoryList {
 
-        //using ArrayList type as multiple threads can access simultaneously
-    private ArrayList<StorageItem> inventory;
+    private ArrayList<StorageItem> inventory = new ArrayList<StorageItem>();
 
-    public StorageItem getItem(ArrayList<StorageItem> inventory) {
-        return null;
+    public InventoryList(ArrayList<StorageItem> testInventory) {
+        for (StorageItem storageItem : inventory = testInventory) {
+        }
+        ;
+    }
+
+    public StorageItem getItem (int index) {
+                //more code to go here
+        //using ArrayList type as multiple threads can access simultaneously
+        return inventory.get(0);
     }
 
     /*
