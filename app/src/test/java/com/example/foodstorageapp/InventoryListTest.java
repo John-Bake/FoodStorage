@@ -3,24 +3,23 @@ package com.example.foodstorageapp;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class InventoryListTest {
+public class InventoryListTest extends InventoryList {
 
     @Test
     public void getItem() {
         StorageItem testStoreItem = new StorageItem();
         testStoreItem.setName("apples");
 
-        ArrayList<StorageItem> testInventory = new ArrayList<StorageItem>();
+        InventoryList testInventory = new InventoryList();
 
-        testInventory.add(0, testStoreItem);
+        testInventory.addItem(testStoreItem);
 
-        InventoryList testInvList = new InventoryList(testInventory);
+        testInventory.getItem(0);
 
-        testInvList.getItem(0);
-
-        assertNotNull(testInvList);
+        assertNotNull(testInventory);
     }
 }
