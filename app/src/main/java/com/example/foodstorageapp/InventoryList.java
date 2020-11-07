@@ -2,14 +2,12 @@ package com.example.foodstorageapp;
 
 import java.util.ArrayList;
 
-public class InventoryList {
+public class InventoryList extends StorageItem {
 
     private ArrayList<StorageItem> inventory = new ArrayList<StorageItem>();
 
     public InventoryList(ArrayList<StorageItem> testInventory) {
-        for (StorageItem storageItem : inventory = testInventory) {
-        }
-        ;
+        inventory = testInventory;
     }
 
     public StorageItem getItem (int index) {
