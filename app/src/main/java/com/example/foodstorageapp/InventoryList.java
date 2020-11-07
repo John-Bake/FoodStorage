@@ -13,14 +13,19 @@ public class InventoryList extends StorageItem {
     public StorageItem getItem (int index) {
                 //more code to go here
         //using ArrayList type as multiple threads can access simultaneously
-        return inventory.get(0);
+        StorageItem retrievedItem = new StorageItem();
+        retrievedItem = inventory.get(index);
+
+        return retrievedItem;
     }
 
-    /*
-    public void addItem(List<StorageItem>) {
+    public void addItem(ArrayList<StorageItem> inventory) {
+        //add an item to the inventory
     }
-    public void removeItem(List<StorageItem>) {
+
+    public void removeItem(ArrayList<StorageItem> inventory) {
+        //remove an item from the inventory
     }
-    */
+
 
 }
