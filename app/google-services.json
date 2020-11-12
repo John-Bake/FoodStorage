@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "910484033936",
+    "firebase_url": "https://foodstorageapp-b399a.firebaseio.com",
+    "project_id": "foodstorageapp-b399a",
+    "storage_bucket": "foodstorageapp-b399a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910484033936:android:1f431311510e95e82f6315",
+        "android_client_info": {
+          "package_name": "com.example.foodstorageapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910484033936-bt8lu8tr61o8j6pl78d76engm897t18a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-EYVagbH2sRY_OAlWOWg9ow3wvdUDX5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910484033936-bt8lu8tr61o8j6pl78d76engm897t18a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
