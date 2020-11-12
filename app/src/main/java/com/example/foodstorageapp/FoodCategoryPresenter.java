@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class FoodCategoryPresenter {
 
-    public static void displayList(String[] args){
+    void displayList(String[] args){
         LinkedList<String> typeOfFood = new LinkedList<String>();
         typeOfFood.add("Fruits");
         typeOfFood.add("Veggies");
