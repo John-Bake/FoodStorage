@@ -56,6 +56,7 @@
         android:layout_below="@id/confirmUserPwd"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
+        android:onClick="createUser"
         android:text="@string/create_acct_btn" />
 
 </RelativeLayout>

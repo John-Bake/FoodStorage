@@ -21,6 +21,8 @@ public class UserPresenter extends AppCompatActivity {
     public static final String USER_PASSWORD = "password";
     public static final String USER_PREFS = "UserPref";
 
+    private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+
     SharedPreferences sharedPref;
     // Need to be global so they can be accessed by both methods.
     User user = new User();
@@ -31,8 +33,20 @@ public class UserPresenter extends AppCompatActivity {
         
     }
 
-    public void register(String userName, String password) {
-
+    public void register(String userName, String password, String pwdConfirm) {
+        User currentUser = new User();
+        if (userName.matches(EMAIL_REGEX)) {
+            currentUser.setUserName(userName);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Not a valid email", Toast.LENGTH_LONG).show();
+        }
+        if (password == pwdConfirm) {
+            currentUser.setPassword(password);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+        }
     }
     private void displayStatus(boolean validated) {
 
