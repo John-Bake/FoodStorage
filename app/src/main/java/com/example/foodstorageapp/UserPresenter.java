@@ -37,16 +37,19 @@ public class UserPresenter extends AppCompatActivity {
         User currentUser = new User();
         if (userName.matches(EMAIL_REGEX)) {
             currentUser.setUserName(userName);
+            if (password == pwdConfirm) {
+                currentUser.setPassword(password);
+                Query userQuery = new Query();
+                userQuery.writeUser(currentUser);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+            }
         }
         else {
             Toast.makeText(getApplicationContext(), "Not a valid email", Toast.LENGTH_LONG).show();
         }
-        if (password == pwdConfirm) {
-            currentUser.setPassword(password);
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
-        }
+
     }
     private void displayStatus(boolean validated) {
 
