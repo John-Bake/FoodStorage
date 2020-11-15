@@ -2,6 +2,7 @@ package com.example.foodstorageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,4 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    //This is only to move from main screen to piechart, will be delete eventually
+    public void nextscreen(View view) {
+        startActivity(new Intent(MainActivity.this, Dashboard.class));
+    }
+
 }
