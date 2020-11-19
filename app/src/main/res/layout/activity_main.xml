@@ -18,11 +18,12 @@
 
     <EditText
         android:id="@+id/userEmailAddress"
+        android:layout_below="@id/lblInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/email_entry_hint"
         android:inputType="textEmailAddress" />
