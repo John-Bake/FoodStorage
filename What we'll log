@@ -1,0 +1,15 @@
+verbose - meassages aroud UI setup for dashboard
+
+debug - when user adds/submits new item
+
+debug - that the form data passed the data verification and that the camera was successfully accessed to get a  qr code
+
+debug - for when expiry notification is scheduled
+
+info - log successful user authentication
+
+info - Connection to database
+
+error - for when passing an new item it isn't null
+
+error - cannot access camera when trying to scan a QR code
