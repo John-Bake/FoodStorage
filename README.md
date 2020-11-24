@@ -24,3 +24,6 @@ How it will benefit the sponsor: It will help the sponsor keep track of food sto
 - Input the item/scan barcode/take picture/ OCR text to add item to list.
 - Reporting (export to spreadsheet/pdf) to show things like: total listing of food storage by category, total listing of food storage by expiration date, how much food storage has been added in the last month, how much has been removed in the last month (period of time)
 - Suggested expiration dates for items that don't have printed expiration.
+
+### Additional Project Info 
+[Project Milestones](https://github.com/John-Bake/FoodStorage/wiki)
