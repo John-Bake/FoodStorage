@@ -22,7 +22,7 @@
         </activity>
         <!--below is only for testing -->
         <activity android:name=".Dashboard"
-            android:label="chart">
+            android:label="Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -25,8 +25,9 @@ public class Dashboard extends AppCompatActivity {
 
     private static String TAG = "DashboardActivity";
 
-    private float[] yData = {25, 10, 48};
-    private String[] xData = {"Grains", "Fruits", "Water"};
+    public float[] yData = {25, 10, 48};
+    //"More than 3 Months" - "Less than 3 Months" - "Less than 1 Month"
+    public String[] xData = {"Grains", "Fruits", "Water"};
     PieChart pieChart;
 
 
@@ -57,6 +58,7 @@ public class Dashboard extends AppCompatActivity {
         pieChart.setCenterTextSize(10);
         pieChart.setDrawEntryLabels(true);
         pieChart.setEntryLabelTextSize(20);
+        pieChart.animateXY(3000, 3000);
 
         // I can add more options, see documentation
         addDataSet();
@@ -78,12 +80,11 @@ public class Dashboard extends AppCompatActivity {
                     }
                 }
                 String foodtype = xData[pos1];
-//                Toast.makeText(Dashboard.this, "Food Type " + foodtype + "\n" + "Quantity: " +
-//                        food + " lb", Toast.LENGTH_LONG).show();
-
                 TextView textView = (TextView) findViewById((R.id.showdata));
                 textView.setText(("Food Type: " + foodtype + "\n" + "Quantity: " +
                             food + " lb." + "\n" + "Expiration Date: " + "01/15/2021"));
+
+
 
             }
 
@@ -111,7 +112,7 @@ public class Dashboard extends AppCompatActivity {
         }
 
         //create the data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Food Type ");
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Chart");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
