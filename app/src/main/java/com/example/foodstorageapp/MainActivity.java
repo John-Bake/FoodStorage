@@ -4,21 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "Main";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void createUser(View createUser) {
+        Log.d(TAG, "Getting user data");
         EditText editUserName = (EditText) findViewById(R.id.userEmailAddress);
         EditText editPassword = (EditText) findViewById(R.id.userPassword);
         EditText editPasswordConfirm = (EditText) findViewById(R.id.confirmUserPwd);
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         String password = editPassword.getText().toString();
         String pwdConfirm = editPasswordConfirm.getText().toString();
         UserPresenter currentUser = new UserPresenter();
-        currentUser.register(userName, password, pwdConfirm);
+        Log.d(TAG, "Created userPresenter with username: " + userName + " password: " + password);
+        //currentUser.register(userName, password, pwdConfirm);
 
 
 

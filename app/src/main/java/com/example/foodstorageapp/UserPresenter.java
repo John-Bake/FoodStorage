@@ -1,15 +1,11 @@
 package com.example.foodstorageapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UserPresenter extends AppCompatActivity {
@@ -23,6 +19,8 @@ public class UserPresenter extends AppCompatActivity {
 
     private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 
+    private static final String TAG = "UserPresenter";
+
     SharedPreferences sharedPref;
     // Need to be global so they can be accessed by both methods.
     User user = new User();
@@ -34,12 +32,13 @@ public class UserPresenter extends AppCompatActivity {
     }
 
     public void register(String userName, String password, String pwdConfirm) {
-        User currentUser = new User();
+        User currentUser = new User(userName, password);
+        Log.d(TAG, "Created new user with " + currentUser);
         if (userName.matches(EMAIL_REGEX)) {
             currentUser.setUserName(userName);
             if (password == pwdConfirm) {
                 currentUser.setPassword(password);
-                Query userQuery = new Query();
+                WriteQuery userQuery = new WriteQuery();
                 userQuery.writeUser(currentUser);
             }
             else {

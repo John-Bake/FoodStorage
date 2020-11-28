@@ -2,13 +2,42 @@ package com.example.foodstorageapp;
 
 import java.util.Date;
 
+/***
+ *   Class for storing the data used in a food storage item.
+ *
+ *   This class holds all of the data about a food storage item that the database will need.
+ *   name:  Name of the item (green beans, mashed potatoes)
+ *   storageMedium:  What is it stored in? (jars, cans, mylar, plastic)
+ *   typeOfFood:  An optional field for the user to define a food category to make sorting easier.
+ *      This is open for the user to define in whatever way they consider the most useful.  The
+ *      default is to sort by food group (fruits, vegetables, meat, water) but the options can be
+ *      changed if the user has a sorting method that they would prefer.
+ *   quantity: How big is your container?  This is used in combination with unitOfMeasure
+ *      unitOfMeasure: Used with the quantity to show the size of the container.  (oz, lb, kg, g,
+ *      liter, gallon)
+ *   location: An optional field to remind the user where the food is stored if they have multiple
+ *      storage locations.  It does not come with defaults and relies on the user to input the
+ *      locations that they will use. (pantry, garage, basement, under stairs)
+ *   shelfLifeInMonths: What is the predicted shelf life?  The input form allows the user to enter
+ *      this in months or years but it is always stored in months.
+ *   dateStored:  What is the date for when it was added to storage.  This is used with
+ *      shelfLifeInMonths to show how close to expired an item is.  The default is today's date.
+ *
+ *   @author Nathan Kempton
+ *   @version 2020.11.25
+ *   @since 1.0
+ *
+ *   @param None: There is currently no default constructor to set up the variables in the class.
+ *      They are set using the setter methods.
+ */
+
 public class StorageItem {
     String name;
     String storageMedium;
     String typeOfFood;
     String unitOfMeasure;
     String location;
-    Float quantity;
+    Float quantity; //Size of container
     int shelfLifeInMonths;
     Date dateStored;
 

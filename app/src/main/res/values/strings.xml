@@ -6,4 +6,16 @@
     <string name="confirm_pwd_entry_hint">Confirm password</string>
     <string name="create_acct_btn">Create Account</string>
     <string name="action_settings">Settings</string>
+    <string name="editTextFoodName">Food Name</string>
+    <string name="editTextNumberUnitSize">1</string>
+    <string name="editTextUnits">oz</string>
+    <string name="editTextNumberToAdd">1</string>
+    <string name="editTextStorageMedium">canned, dry</string>
+    <string name="editTextDateStored">today</string>
+    <string name="editTextNumberShelfLifeInMonths">36</string>
+    <string name="editTextFoodType">vegetables</string>
+    <string-array name="monthYear">
+        <item>Years</item>
+        <item>Months</item>
+    </string-array>
 </resources>
