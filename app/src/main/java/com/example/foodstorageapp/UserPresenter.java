@@ -38,8 +38,8 @@ public class UserPresenter extends AppCompatActivity {
             currentUser.setUserName(userName);
             if (password == pwdConfirm) {
                 currentUser.setPassword(password);
-                WriteQuery userQuery = new WriteQuery();
-                userQuery.writeUser(currentUser);
+                //WriteQuery userQuery = new WriteQuery(); //just so I could open the app-Ricardo
+                //userQuery.writeUser(currentUser); //just so I could open the app-Ricardo
             }
             else {
                 Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();

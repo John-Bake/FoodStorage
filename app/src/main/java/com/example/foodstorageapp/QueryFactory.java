@@ -11,5 +11,6 @@ public class QueryFactory<T> {
         if (t instanceof StorageItem) {
             return new ItemWriteQuery();
         }
+        return null; //added so I could pass the error and could start the app-Ricardo
     }
 }

@@ -23,8 +23,8 @@ public class DashboardPresenter {
     }
 
     //SAMPLE FOR ONSAVE
-    //To save the scripture
-//    public void onSaveScripture(View theButton) {
+    //To save the food
+//    public void onSaveFood(View theButton) {
 //
 //        SharedPreferences sharedPrefs = getSharedPreferences(MainActivity.APP_PREFS, Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -34,8 +34,8 @@ public class DashboardPresenter {
 //    }
 //
 //    //SAMPLE FOR ONLOAD
-//    //To load the saved scripture
-//    public void onLoadScripture(View theButton) {
+//    //To load the saved food
+//    public void onLoadFood(View theButton) {
 //        SharedPreferences sharedPref = getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
 //
 //
