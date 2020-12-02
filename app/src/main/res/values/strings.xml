@@ -18,4 +18,5 @@
         <item>Years</item>
         <item>Months</item>
     </string-array>
+    <string name="notification_details">Show Notification Details Here…</string>
 </resources>
