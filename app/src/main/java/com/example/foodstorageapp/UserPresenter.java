@@ -33,20 +33,22 @@ public class UserPresenter extends AppCompatActivity {
 
     public void register(String userName, String password, String pwdConfirm) {
         User currentUser = new User(userName, password);
-        Log.d(TAG, "Created new user with " + currentUser);
         if (userName.matches(EMAIL_REGEX)) {
             currentUser.setUserName(userName);
             if (password == pwdConfirm) {
                 currentUser.setPassword(password);
-                //WriteQuery userQuery = new WriteQuery(); //just so I could open the app-Ricardo
-                //userQuery.writeUser(currentUser); //just so I could open the app-Ricardo
+//                QueryFactory userQuery = new QueryFactory(); //just so I could open the app-Ricardo
+//                WriteQuery saveUser = userQuery.getQuery(currentUser); //just so I could open the app-Ricardo
+//                saveUser.makeWriteQuery();
+
+                //Toast.makeText(getApplicationContext(), "Passwords is saved", Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
             }
         }
         else {
-            Toast.makeText(getApplicationContext(), "Not a valid email", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Not a valid email", Toast.LENGTH_LONG).show();
         }
 
     }
