@@ -9,7 +9,8 @@ public class QueryFactory<T> {
             return new ItemWriteQuery();
         }
         else if (t instanceof User) {
-            return new UserWriteQuery();
+            User user = new User((User) t);
+            return new UserWriteQuery(user);
         }
         else return null; //added so I could pass the error and could start the app-Ricardo
     }

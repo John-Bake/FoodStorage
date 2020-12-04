@@ -7,6 +7,11 @@ public class User {
     public User(String userName, String password){this.userName = userName;
     this.password = password;} //only to be able to start the app-Ricardo
 
+    public User(User user) {
+        this.userName = user.getUserName();
+        this.password = user.getPassword();
+    }
+
     public User(){} //only to be able to start the app-Ricardo
 
     public String getUserName() {

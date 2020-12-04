@@ -16,48 +16,32 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "Main";
-    private FirebaseAuth authenticator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        authenticator = FirebaseAuth.getInstance();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = authenticator.getCurrentUser();
-        //updateUI(currentUser);
     }
 
     public void createUser(View createUser) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("foodstorageapp");
+
         EditText editUserName = (EditText) findViewById(R.id.userEmailAddress);
         EditText editPassword = (EditText) findViewById(R.id.userPassword);
         EditText editPasswordConfirm = (EditText) findViewById(R.id.confirmUserPwd);
         String userName = editUserName.getText().toString();
         String password = editPassword.getText().toString();
         String pwdConfirm = editPasswordConfirm.getText().toString();
-        authenticator.createUserWithEmailAndPassword(userName, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = authenticator.getCurrentUser();
-                        }
-                        else {
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        }
-                    }
-                });
-        FirebaseUser user = authenticator.getCurrentUser();
+
         UserPresenter currentUser = new UserPresenter();
-        //currentUser.register(userName, password, pwdConfirm);
+        currentUser.register(userName, password, pwdConfirm);
 
 
 

@@ -6,11 +6,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class UserPresenter extends AppCompatActivity {
     private boolean loginStatus = false;
     private boolean registrationStatus = false;
+    private FirebaseAuth authenticator;
 
     // Constants for shared preferences keys
     public static final String USER_NAME = "name";
@@ -32,23 +41,38 @@ public class UserPresenter extends AppCompatActivity {
     }
 
     public void register(String userName, String password, String pwdConfirm) {
-        User currentUser = new User(userName, password);
+        User user = new User(userName, password);
         if (userName.matches(EMAIL_REGEX)) {
-            currentUser.setUserName(userName);
-            if (password == pwdConfirm) {
-                currentUser.setPassword(password);
-//                QueryFactory userQuery = new QueryFactory(); //just so I could open the app-Ricardo
-//                WriteQuery saveUser = userQuery.getQuery(currentUser); //just so I could open the app-Ricardo
-//                saveUser.makeWriteQuery();
+            user.setUserName(userName);
+            if (password.equals(pwdConfirm)) {
+                user.setPassword(password);
+                authenticator = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = authenticator.getCurrentUser();
 
-                //Toast.makeText(getApplicationContext(), "Passwords is saved", Toast.LENGTH_LONG).show();
+                authenticator.createUserWithEmailAndPassword(user.getUserName(), user.getPassword())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("registerUser", "createUserWithEmail:success");
+                                    FirebaseUser user = authenticator.getCurrentUser();
+                                }
+                                else {
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                }
+                            }
+                        });
+
+                QueryFactory factory = new QueryFactory();
+                WriteQuery saveUser = factory.getQuery(user);
+                saveUser.makeWriteQuery();
             }
             else {
-                //Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+
             }
         }
         else {
-            //Toast.makeText(getApplicationContext(), "Not a valid email", Toast.LENGTH_LONG).show();
+
         }
 
     }
