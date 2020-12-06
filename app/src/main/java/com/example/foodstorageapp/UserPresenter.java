@@ -66,6 +66,7 @@ public class UserPresenter extends AppCompatActivity {
                 QueryFactory factory = new QueryFactory();
                 WriteQuery saveUser = factory.getQuery(user);
                 saveUser.makeWriteQuery();
+                
             }
             else {
 

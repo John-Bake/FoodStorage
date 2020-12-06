@@ -13,19 +13,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/create_user_account"
+        android:text="@string/login_prompt"
         android:textSize="18sp" />
 
     <EditText
         android:id="@+id/userEmailAddress"
-        android:layout_below="@id/lblInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/lblInstructions"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="18dp"
+        android:autoText="false"
         android:ems="10"
-        android:hint="@string/email_entry_hint"
+        android:hint="@string/login_email"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -35,43 +35,47 @@
         android:layout_below="@id/userEmailAddress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="@string/pwd_entry_hint"
+        android:hint="@string/login_password"
         android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/confirmUserPwd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/userPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="@string/confirm_pwd_entry_hint"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/createActBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/confirmUserPwd"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:onClick="createUser"
-        android:text="@string/create_acct_btn" />
 
     <!--This "Next" button will be deleted eventually-->
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:onClick="loginUser"
+        android:text="@string/login_button" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="22dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="160dp"
         android:layout_marginRight="22dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="21dp"
         android:onClick="nextscreen"
         android:text="next" />
+
+    <TextView
+        android:id="@+id/account_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="209dp"
+        android:clickable="true"
+        android:onClick="registerUser"
+        android:text="@string/create_user_account" />
 
 </RelativeLayout>

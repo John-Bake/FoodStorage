@@ -29,22 +29,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void createUser(View createUser) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("foodstorageapp");
+    public void loginUser(View userLogin) {
 
-        EditText editUserName = (EditText) findViewById(R.id.userEmailAddress);
-        EditText editPassword = (EditText) findViewById(R.id.userPassword);
-        EditText editPasswordConfirm = (EditText) findViewById(R.id.confirmUserPwd);
-        String userName = editUserName.getText().toString();
-        String password = editPassword.getText().toString();
-        String pwdConfirm = editPasswordConfirm.getText().toString();
+    }
 
-        UserPresenter currentUser = new UserPresenter();
-        currentUser.register(userName, password, pwdConfirm);
-
-
-
+    public void registerUser(View userRegistration) {
+        startActivity(new Intent(MainActivity.this, UserRegistrationActivity.class));
     }
 
     //This is only to move from main screen to piechart, will be delete eventually
