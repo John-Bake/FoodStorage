@@ -1,6 +1,6 @@
 package com.example.foodstorageapp;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /***
  *   Class for storing the data used in a food storage item.
@@ -21,11 +21,14 @@ import java.util.Date;
  *   shelfLifeInMonths: What is the predicted shelf life?  The input form allows the user to enter
  *      this in months or years but it is always stored in months.
  *   dateStored:  What is the date for when it was added to storage.  This is used with
- *      shelfLifeInMonths to show how close to expired an item is.  The default is today's date.
+ *      shelfLifeInMonths to show how close to expired an item is.  This uses the java.time API
+ *
+ * New to this Version:
+ * dateStored was changed from java.util.date to use the java.time.LocalDate (JSR-310) API
  *
  *   @author Nathan Kempton
- *   @version 2020.11.25
- *   @since 1.0
+ *   @version 2020.12.07    1.1
+ *   @since 2020.11.25
  *
  *   @param None: There is currently no default constructor to set up the variables in the class.
  *      They are set using the setter methods.
@@ -39,7 +42,7 @@ public class StorageItem {
     String location;
     Float quantity; //Size of container
     int shelfLifeInMonths;
-    Date dateStored;
+    LocalDate dateStored;
 
     public String getName() {
         return name;
@@ -81,11 +84,11 @@ public class StorageItem {
         location = newLocation;
     }
 
-    public Date getDateStored() {
+    public LocalDate getDateStored() {
         return dateStored;
     }
 
-    public void setDateStored(Date newDateStored) {
+    public void setDateStored(LocalDate newDateStored) {
         dateStored = newDateStored;
     }
 
