@@ -12,10 +12,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserWriteQuery implements WriteQuery {
     private User user;
-    private FirebaseAuth authenticator;
-
 
     FirebaseDatabase appDatabase = FirebaseDatabase.getInstance();
     DatabaseReference reference = appDatabase.getReference("FoodStorageApp");
@@ -23,12 +24,15 @@ public class UserWriteQuery implements WriteQuery {
     public UserWriteQuery() {}
     public UserWriteQuery(User user) {
         this.user = user;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        user.setUserId(currentUser.getUid());
     }
 
     @Override
     public void makeWriteQuery() {
-
         DatabaseReference userRef = reference.child("users");
-        userRef.push().setValue(user);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = currentUser.getUid();
+        userRef.child (userID).setValue(user);
     }
 }

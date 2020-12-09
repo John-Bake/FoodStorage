@@ -28,5 +28,9 @@ public class DataEntry {
    //     return importedArray;
     //}
 
-    public void saveToDatabase(StorageItem newItem) {}
+    public void saveToDatabase(StorageItem newItem) {
+        WriteQueryFactory factory = new WriteQueryFactory();
+        WriteQuery saveItem = factory.getQuery(newItem);
+        saveItem.makeWriteQuery();
+    }
 }

@@ -21,8 +21,8 @@ public class UserRegistrationActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("foodstorageapp");
 
-        EditText editUserName = (EditText) findViewById(R.id.userEmailAddress);
-        EditText editPassword = (EditText) findViewById(R.id.userPassword);
+        EditText editUserName = (EditText) findViewById(R.id.registrationEmailAddress);
+        EditText editPassword = (EditText) findViewById(R.id.registrationPassword);
         EditText editPasswordConfirm = (EditText) findViewById(R.id.confirmUserPwd);
         String userName = editUserName.getText().toString();
         String password = editPassword.getText().toString();

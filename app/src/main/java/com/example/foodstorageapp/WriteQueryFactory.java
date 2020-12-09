@@ -3,9 +3,10 @@ package com.example.foodstorageapp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class QueryFactory<T> {
+public class WriteQueryFactory<T> {
     public WriteQuery getQuery(T t) {
         if (t instanceof StorageItem) {
+            StorageItem item = new StorageItem((StorageItem)t);
             return new ItemWriteQuery();
         }
         else if (t instanceof User) {

@@ -1,10 +1,15 @@
 package com.example.foodstorageapp;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ItemWriteQuery implements WriteQuery {
     private StorageItem item;
+
+    FirebaseDatabase appDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference reference = appDatabase.getReference("FoodStorageApp");
 
     public ItemWriteQuery() {}
     public ItemWriteQuery(StorageItem item) {
@@ -13,8 +18,9 @@ public class ItemWriteQuery implements WriteQuery {
 
     @Override
     public void makeWriteQuery() {
-        FirebaseDatabase appDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference appDatabaseRef = appDatabase.getReference().child("item");
-        appDatabaseRef.push().setValue(item);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = currentUser.getUid();
+        DatabaseReference userRef = reference.child("users").child(userID);
+        userRef.push().setValue(item);
     }
 }

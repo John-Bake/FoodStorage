@@ -44,6 +44,19 @@ public class StorageItem {
     int shelfLifeInMonths;
     LocalDate dateStored;
 
+    public StorageItem() {} // Needed to allow StorageItem object to be stored in database
+
+    public StorageItem(StorageItem item) {
+        this.name = item.getName();
+        this.storageMedium = item.getStorageMedium();
+        this.typeOfFood = item.getTypeOfFood();
+        this.unitOfMeasure = item.getUnitOfMeasure();
+        this.location = item.getLocation();
+        this.quantity = item.getQuantity();
+        this.shelfLifeInMonths = item.getShelfLifeInMonths();
+        this.dateStored =item.getDateStored();
+    }
+
     public String getName() {
         return name;
     }

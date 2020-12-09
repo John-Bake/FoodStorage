@@ -47,8 +47,6 @@ public class UserPresenter extends AppCompatActivity {
             if (password.equals(pwdConfirm)) {
                 user.setPassword(password);
                 authenticator = FirebaseAuth.getInstance();
-                FirebaseUser currentUser = authenticator.getCurrentUser();
-
                 authenticator.createUserWithEmailAndPassword(user.getUserName(), user.getPassword())
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -62,8 +60,7 @@ public class UserPresenter extends AppCompatActivity {
                                 }
                             }
                         });
-
-                QueryFactory factory = new QueryFactory();
+                WriteQueryFactory factory = new WriteQueryFactory();
                 WriteQuery saveUser = factory.getQuery(user);
                 saveUser.makeWriteQuery();
                 
