@@ -8,8 +8,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Calendar;
-
+import java.time.ZonedDateTime;
 
 public class ExpireNotice extends AppCompatActivity {
     private static final String TAG = "ExpireNotice";
@@ -30,6 +29,7 @@ public class ExpireNotice extends AppCompatActivity {
         Log.d(TAG, "Setup notification started");
     }
 
+    //@RequiresApi(api = Build.VERSION_CODES.O)
     private void setAlarm() {
         //alarmService
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -38,8 +38,17 @@ public class ExpireNotice extends AppCompatActivity {
         PendingIntent broadcast = PendingIntent.getBroadcast(this, 100,
                 notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        long currentTime = ZonedDateTime.now().toInstant().toEpochMilli();
+        //long time = System.currentTimeMillis();
+        long alarmTime = currentTime + 5;
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmTime, broadcast);
+
+        /* refactored to use above the java.time class as there are know issues
+        with the java.util.Calendar classes
+
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.SECOND, 5);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
+        */
     }
 }
