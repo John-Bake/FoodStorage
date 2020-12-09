@@ -47,5 +47,10 @@ public class InventoryList extends StorageItem {
         //remove an item from the inventory
     }
 
+    // get the size of the inventory
+    public int getSize()
+    {
+        return inventory.size();
+    }
 
 }

@@ -2,25 +2,23 @@ package com.example.foodstorageapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
 import android.view.View;
 
-public class DashboardPresenter {
+import androidx.appcompat.app.AppCompatActivity;
 
-    void getdisplayDataEntry() {
+public class DashboardPresenter extends AppCompatActivity {
 
-    }
+    void getdisplayDataEntry() {return;}
 
     void getExpireNotices() {
 
-    }
-
-    void getPieChart() {
 
     }
 
-    void getDisplayPieChart() {
+    void getPieChart() {return;}
 
-    }
+    void getDisplayPieChart() {return;    }
 
     //SAMPLE FOR ONSAVE
     //To save the food

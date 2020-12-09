@@ -1,6 +1,8 @@
 package com.example.foodstorageapp;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -8,34 +10,111 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.time.Period;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+import java.time.LocalDate;
 
+/**
+ * Class and methods for the Dashboard screen
+ *
+ * The class is working only with static data for now, it will be calling data from
+ * storageItem class and ExpireNotice class.
+ *
+ * Pending changes:
+ * -Be able to pass data from the classes mentioned above.
+ *
+ * @author Ricardo Nunez
+ * @version 1.0
+ * @since 2020.11.28
+ */
+
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Dashboard extends AppCompatActivity {
 
     private static String TAG = "DashboardActivity";
+
+    TestData testData = new TestData(); //will be changed once I can get to use the database
 
     public float[] yData = {25, 10, 48};
     //"More than 3 Months" - "Less than 3 Months" - "Less than 1 Month"
     public String[] xData = {"Grains", "Fruits", "Water"};
     PieChart pieChart;
 
+    //counters to use on months calculation
+    int greencounter = 0;
+    int yellowcounter = 0;
+    int redcounter = 0;
 
+    //inventory list
+    InventoryList greenInventory = new InventoryList();
+    InventoryList yellowInventory = new InventoryList();
+    InventoryList redInventory = new InventoryList();
+
+    //array list for dates
+    ArrayList<LocalDate> greenDates = new ArrayList<>();
+    ArrayList<LocalDate> yellowDates = new ArrayList<>();
+    ArrayList<LocalDate> redDates = new ArrayList<>();
+
+
+    @SuppressLint("NewApi")
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.dashboard);
         Log.d(TAG, "onCreate: starting to create the chart");
+
+
+        //Calculates the expiration date based on StoreDate from the user
+        for (int i = 0; i < testData.testData.size(); i++) {
+            LocalDate date = LocalDate.now();
+            StorageItem item = testData.getOneItem(i);
+            int months = item.getShelfLifeInMonths();
+            LocalDate storedDate = item.getDateStored();
+
+            LocalDate expirationDate = storedDate.plusMonths(months);
+
+            Period period = Period.between( date, expirationDate);
+
+            long remainingMonths = period.toTotalMonths();
+
+            //counts to find where in the pie chart lands, green, yellow or red
+            // then adds the inventory item and adds the expiration date
+            if (remainingMonths < 1){
+                redcounter++;
+                redInventory.addItem(item);
+                redDates.add(expirationDate);
+            }else if (remainingMonths >= 1 && remainingMonths < 3){
+                yellowcounter++;
+                yellowInventory.addItem(item);
+                yellowDates.add(expirationDate);
+            }else {
+                greencounter++;
+                greenInventory.addItem(item);
+                greenDates.add(expirationDate);
+            }
+
+        }
+
+
 
 //        String StorageItem;
 //        String unitOfMeasure;
@@ -43,7 +122,6 @@ public class Dashboard extends AppCompatActivity {
 //        String typeOfFood;
 
         pieChart = (PieChart) findViewById(R.id.idPieChart);
-
 
         Log.d(TAG, "getStorageItem started");
 
@@ -60,7 +138,6 @@ public class Dashboard extends AppCompatActivity {
         pieChart.setEntryLabelTextSize(20);
         pieChart.animateXY(3000, 3000);
 
-        // I can add more options, see documentation
         addDataSet();
 
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -70,27 +147,45 @@ public class Dashboard extends AppCompatActivity {
                 Log.d(TAG, "onValueSelected: " + e.toString());
                 Log.d(TAG, "onValueSelected: " + h.toString());
 
-                int pos1 = e.toString().indexOf("y: ");
-                String food = e.toString().substring(pos1 + 3);
+                int pos1 = h.toString().indexOf("x: ");
+                Character label = h.toString().substring(pos1 + 3).charAt(0);
+                String result = "";
 
-                for (int i = 0; i < yData.length; i++) {
-                    if (yData[i] == Float.parseFloat(food)) {
-                        pos1 = i;
-                        break;
+                if (label == '0')
+                {
+                    // green pie slice
+                    for (int i = 0; i < greenInventory.getSize(); i++) {
+                        StorageItem item = greenInventory.getItem(i);
+                        result += item.getName() + " " + item.getQuantity() + " " + item.getUnitOfMeasure() + " Exp: " + greenDates.get(i);
+                        result += "\n";
                     }
                 }
-                String foodtype = xData[pos1];
-                TextView textView = (TextView) findViewById((R.id.showdata));
-                textView.setText(("Food Type: " + foodtype + "\n" + "Quantity: " +
-                            food + " lb." + "\n" + "Expiration Date: " + "01/15/2021"));
+                else if (label == '1')
+                {
+                    // yellow pie slice
+                    for (int i = 0; i < yellowInventory.getSize(); i++) {
+                        StorageItem item = yellowInventory.getItem(i);
+                        result += item.getName() + " " + item.getQuantity() + " " + item.getUnitOfMeasure() + " Exp: " + yellowDates.get(i);
+                        result += "\n";
+                    }
+                }
+                else
+                {
+                    // red pie slice
+                    for (int i = 0; i < redInventory.getSize(); i++) {
+                        StorageItem item = redInventory.getItem(i);
+                        result += item.getName() + " " + item.getQuantity() + " " + item.getUnitOfMeasure() + " Exp: " + redDates.get(i);
+                        result += "\n";
+                    }
+                }
 
-
+                TextView textView = (TextView) findViewById(R.id.showdata);
+                textView.setText(result);
 
             }
 
             @Override
             public void onNothingSelected() {
-
 
             }
         });
@@ -103,18 +198,19 @@ public class Dashboard extends AppCompatActivity {
         ArrayList<PieEntry> yEntrys = new ArrayList<>();
         ArrayList<String> xEntrys = new ArrayList<>();
 
-        for (int i = 0; i < yData.length; i++) {
-            yEntrys.add(new PieEntry(yData[i], i));
-        }
+        yEntrys.add(new PieEntry(greencounter, 0));
+        yEntrys.add(new PieEntry(yellowcounter, 1));
+        yEntrys.add(new PieEntry(redcounter, 2));
 
-        for (int i = 1; i < xData.length; i++) {
-            xEntrys.add(xData[i]);
-        }
+        xEntrys.add("More than 3 Months");
+        xEntrys.add("Less than 3 Months & more than 1 Month");
+        xEntrys.add("Less than 1 Month");
 
         //create the data set
         PieDataSet pieDataSet = new PieDataSet(yEntrys, "Chart");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
+        pieDataSet.setDrawValues(false);
 
         //color for dataset
         ArrayList<Integer> colors = new ArrayList<>();
