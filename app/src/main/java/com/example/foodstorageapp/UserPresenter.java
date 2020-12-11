@@ -1,6 +1,7 @@
 package com.example.foodstorageapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,13 @@ public class UserPresenter extends AppCompatActivity {
     public static final String USER_PASSWORD = "password";
     public static final String USER_PREFS = "UserPref";
 
-    private static final String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+    public boolean getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
 
     private static final String TAG = "UserPresenter";
 
@@ -36,44 +43,29 @@ public class UserPresenter extends AppCompatActivity {
     String userName = user.getUserName();
     String password = user.getPassword();
 
-    public void authenticate(String userData) {
-        
-    }
-
     public void register(String userName, String password, String pwdConfirm) {
-        User user = new User(userName, password);
-        if (userName.matches(EMAIL_REGEX)) {
-            user.setUserName(userName);
-            if (password.equals(pwdConfirm)) {
-                user.setPassword(password);
-                authenticator = FirebaseAuth.getInstance();
-                authenticator.createUserWithEmailAndPassword(user.getUserName(), user.getPassword())
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("registerUser", "createUserWithEmail:success");
-                                    FirebaseUser user = authenticator.getCurrentUser();
-                                }
-                                else {
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                }
-                            }
-                        });
-                WriteQueryFactory factory = new WriteQueryFactory();
-                WriteQuery saveUser = factory.getQuery(user);
-                saveUser.makeWriteQuery();
-                
-            }
-            else {
-
-            }
-        }
-        else {
-
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        authenticator = FirebaseAuth.getInstance();
+        authenticator.createUserWithEmailAndPassword(user.getUserName(), user.getPassword())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("registerUser", "createUserWithEmail:success");
+                            FirebaseUser user = authenticator.getCurrentUser();
+                        }
+                        else {
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                        }
+                    }
+                });
+            WriteQueryFactory factory = new WriteQueryFactory();
+            WriteQuery saveUser = factory.getQuery(user);
+            saveUser.makeWriteQuery();
         }
 
-    }
     private void displayStatus(boolean validated) {
 
     }

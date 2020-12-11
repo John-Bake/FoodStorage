@@ -92,9 +92,9 @@ public class DataEntryForm extends AppCompatActivity {
         if(numberToAdd <= 0) {
             numberToAdd = 1;
         }
-        ItemWriteQuery itemToSave = new ItemWriteQuery(newStorageItem);
+        DataEntry itemToSave = new DataEntry();
         for(int a = 0; a < numberToAdd; a++) {
-            itemToSave.makeWriteQuery();
+            itemToSave.saveToDatabase(newStorageItem);
         }
     }
 }

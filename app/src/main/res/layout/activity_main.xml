@@ -49,7 +49,7 @@
         android:layout_below="@+id/userPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
-        android:onClick="loginUser"
+        android:onClick="authenticateUser"
         android:text="@string/login_button" />
 
     <Button

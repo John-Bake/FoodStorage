@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">FoodStorageApp</string>
     <string name="create_user_account">Create your account here</string>
-    <string name="pwd_entry_hint">Enter password (minimum 6 characters)</string>
+    <string name="pwd_entry_hint">Enter password</string>
+    <string name="pwd_requirements">minimum 6 characters</string>
     <string name="email_entry_hint">Enter your email address</string>
     <string name="confirm_pwd_entry_hint">Confirm password</string>
     <string name="create_acct_btn">Create Account</string>
