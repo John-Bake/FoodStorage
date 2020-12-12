@@ -85,7 +85,7 @@ public class DataEntryForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_entry_form);
+        setContentView(R.layout.nav_activity_data_entry_form);
         if(getIntent().getExtras() != null) {
             newStorageItem.setName(getIntent().getStringExtra(FOOD));
             newStorageItem.setStorageMedium(getIntent().getStringExtra(MEDIUM));
