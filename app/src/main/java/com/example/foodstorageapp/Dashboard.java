@@ -43,6 +43,7 @@ public class Dashboard extends AppCompatActivity {
 
     private static String TAG = "DashboardActivity";
 
+
     TestData testData = new TestData(); //will be changed once I can get to use the database
 
     public float[] yData = {25, 10, 48};
