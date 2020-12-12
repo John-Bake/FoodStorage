@@ -18,6 +18,19 @@
         <item>Years</item>
         <item>Months</item>
     </string-array>
+    <string-array name="possibleUnits">
+        <item>oz</item>
+        <item>lb</item>
+        <item>fl oz</item>
+        <item>qt</item>
+        <item>gal</item>
+        <item>whole</item>
+
+        <item>g</item>
+        <item>kg</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
     <string name="notification_details">Show Notification Details Here…</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>

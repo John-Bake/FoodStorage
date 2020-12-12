@@ -1,5 +1,9 @@
 package com.example.foodstorageapp;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.time.LocalDate;
 
 /***
@@ -23,15 +27,16 @@ import java.time.LocalDate;
  *   dateStored:  What is the date for when it was added to storage.  This is used with
  *      shelfLifeInMonths to show how close to expired an item is.  This uses the java.time API
  *
- * New to this Version:
- * dateStored was changed from java.util.date to use the java.time.LocalDate (JSR-310) API
+ * NEW TO THIS VERSION:
+ * Default values assigned at creation.  Default values are 0 for numbers and a blank space " " for
+ * strings.  Have an assigned value of some sort helped with issues that were showing up on the
+ * DateEntryForm
  *
  *   @author Nathan Kempton
- *   @version 2020.12.07    1.1
+ *   @version 2020.12.11    1.2
  *   @since 2020.11.25
  *
- *   @param None: There is currently no default constructor to set up the variables in the class.
- *      They are set using the setter methods.
+ *   @param None: This class does not take any parameters.
  */
 
 public class StorageItem {
@@ -44,7 +49,17 @@ public class StorageItem {
     int shelfLifeInMonths;
     LocalDate dateStored;
 
-    public StorageItem() {} // Needed to allow StorageItem object to be stored in database
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public StorageItem() {
+        name = " ";
+        storageMedium = " ";
+        typeOfFood = " ";
+        unitOfMeasure = "oz";
+        location = " ";
+        quantity = (float) 0.0;
+        shelfLifeInMonths = 0;
+        dateStored = LocalDate.of(1800, 1, 1);
+    }
 
     public StorageItem(StorageItem item) {
         this.name = item.getName();
