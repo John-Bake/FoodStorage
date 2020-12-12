@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = userAuth.getCurrentUser();
+                            String userID = user.getUid();
                             startActivity(new Intent(MainActivity.this, DataEntryForm.class));
                         }
                     }
