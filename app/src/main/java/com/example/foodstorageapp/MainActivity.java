@@ -23,14 +23,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private  FirebaseAuth userAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userAuth = FirebaseAuth.getInstance();
     }
 
-    public void loginUser(View userLogin) {
+    public void authenticateUser(View userLogin) {
+        EditText editUserName = (EditText) findViewById(R.id.userEmailAddress);
+        EditText editPassword = (EditText) findViewById(R.id.userPassword);
+        String userName = editUserName.getText().toString();
+        String password = editPassword.getText().toString();
+        authenticate(userName, password);
 
+    }
+
+    public void authenticate(String userName, String password) {
+
+        userAuth = FirebaseAuth.getInstance();
+        userAuth.signInWithEmailAndPassword(userName, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = userAuth.getCurrentUser();
+                            startActivity(new Intent(MainActivity.this, DataEntryForm.class));
+                        }
+                    }
+                });
     }
 
     public void registerUser(View userRegistration) {

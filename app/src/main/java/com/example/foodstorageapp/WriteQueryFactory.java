@@ -7,7 +7,7 @@ public class WriteQueryFactory<T> {
     public WriteQuery getQuery(T t) {
         if (t instanceof StorageItem) {
             StorageItem item = new StorageItem((StorageItem)t);
-            return new ItemWriteQuery();
+            return new ItemWriteQuery(item);
         }
         else if (t instanceof User) {
             User user = new User((User) t);
