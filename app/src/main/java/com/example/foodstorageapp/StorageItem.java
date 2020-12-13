@@ -5,6 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /***
  *   Class for storing the data used in a food storage item.
@@ -40,6 +42,7 @@ import java.time.LocalDate;
  */
 
 public class StorageItem {
+    public HashMap<Object, Object> storageItem;
     String name;
     String storageMedium;
     String typeOfFood;

@@ -40,8 +40,6 @@
         android:hint="@string/login_password"
         android:inputType="textPassword" />
 
-    <!--This "Next" button will be deleted eventually-->
-
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
@@ -52,18 +50,6 @@
         android:onClick="authenticateUser"
         android:text="@string/login_button" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginBottom="21dp"
-        android:onClick="nextscreen"
-        android:text="next" />
 
     <TextView
         android:id="@+id/account_registration"

@@ -7,22 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard">
 
-    <TextView
-        android:id="@+id/showdata"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_below="@id/idPieChart"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/idPieChart"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Chart Data" />
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="-41dp">
+
+        <TextView
+            android:id="@+id/showdata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Chart Data" />
+
+    </ScrollView>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/idPieChart"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_centerHorizontal="true">
+        android:layout_height="297dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="0dp">
 
     </com.github.mikephil.charting.charts.PieChart>
 

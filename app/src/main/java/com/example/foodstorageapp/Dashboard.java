@@ -46,6 +46,8 @@ public class Dashboard extends AppCompatActivity {
 
     TestData testData = new TestData(); //will be changed once I can get to use the database
 
+    //StorageItem storageItem = new StorageItem(); //Calling from database
+
     public float[] yData = {25, 10, 48};
     //"More than 3 Months" - "Less than 3 Months" - "Less than 1 Month"
     public String[] xData = {"Grains", "Fruits", "Water"};
@@ -77,9 +79,10 @@ public class Dashboard extends AppCompatActivity {
 
 
         //Calculates the expiration date based on StoreDate from the user
+
         for (int i = 0; i < testData.testData.size(); i++) {
             LocalDate date = LocalDate.now();
-            StorageItem item = testData.getOneItem(i);
+            StorageItem item = testData.getOneItem(i); //it was StorageItem item = testData.getOneItem(i)
             int months = item.getShelfLifeInMonths();
             LocalDate storedDate = item.getDateStored();
 
@@ -106,13 +109,6 @@ public class Dashboard extends AppCompatActivity {
             }
 
         }
-
-
-
-//        String StorageItem;
-//        String unitOfMeasure;
-//        float quantity;
-//        String typeOfFood;
 
         pieChart = (PieChart) findViewById(R.id.idPieChart);
 
@@ -149,7 +145,8 @@ public class Dashboard extends AppCompatActivity {
                     // green pie slice
                     for (int i = 0; i < greenInventory.getSize(); i++) {
                         StorageItem item = greenInventory.getItem(i);
-                        result += item.getName() + " " + item.getQuantity() + " " + item.getUnitOfMeasure() + " Exp: " + greenDates.get(i);
+                        result += item.getName() + " " + item.getQuantity() +
+                                " " + item.getUnitOfMeasure() + " Exp: " + greenDates.get(i);
                         result += "\n";
                     }
                 }
@@ -158,7 +155,8 @@ public class Dashboard extends AppCompatActivity {
                     // yellow pie slice
                     for (int i = 0; i < yellowInventory.getSize(); i++) {
                         StorageItem item = yellowInventory.getItem(i);
-                        result += item.getName() + " " + item.getQuantity() + " " + item.getUnitOfMeasure() + " Exp: " + yellowDates.get(i);
+                        result += item.getName() + " " + item.getQuantity() +
+                                " " + item.getUnitOfMeasure() + " Exp: " + yellowDates.get(i);
                         result += "\n";
                     }
                 }
@@ -167,7 +165,8 @@ public class Dashboard extends AppCompatActivity {
                     // red pie slice
                     for (int i = 0; i < redInventory.getSize(); i++) {
                         StorageItem item = redInventory.getItem(i);
-                        result += item.getName() + " " + item.getQuantity() + " " + item.getUnitOfMeasure() + " Exp: " + redDates.get(i);
+                        result += item.getName() + " " + item.getQuantity() +
+                                " " + item.getUnitOfMeasure() + " Exp: " + redDates.get(i);
                         result += "\n";
                     }
                 }
@@ -224,17 +223,4 @@ public class Dashboard extends AppCompatActivity {
         pieChart.invalidate();
 
     }
-
-//        void getStorageItem () {
-//        }
-//
-//        void getQuantity () {
-//        }
-//
-//        void getTypeOfFood () {
-//        }
-//
-//        void getExpireNotices () {
-//        }
-
 }

@@ -43,6 +43,10 @@ public class TestData {
         StorageItem item8 = new StorageItem();
         StorageItem item9 = new StorageItem();
         StorageItem item10 = new StorageItem();
+        StorageItem item11 = new StorageItem();
+        StorageItem item12 = new StorageItem();
+
+
 
         //add first storage item to the arraylist
         //Green beans, new can
@@ -193,6 +197,7 @@ public class TestData {
         item10.setDateStored(dateStored10);
 
         testData.add(item10);
+
     }
 
     public StorageItem getOneItem(int i) {
