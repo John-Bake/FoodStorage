@@ -15,6 +15,7 @@
             android:theme="@style/Theme.FoodStorageApp.NoActionBar"></activity>
         <activity
             android:name=".DataEntryForm"
+            android:label="Add a New Item to Storage"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UserRegistrationActivity"
