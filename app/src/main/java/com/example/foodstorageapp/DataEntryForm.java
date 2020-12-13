@@ -2,16 +2,21 @@ package com.example.foodstorageapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,21 +36,13 @@ import java.util.Date;
  * The barcode scanner icon does nothing at this time.
  *
  * NEW TO THIS VERSION:
- * OnCreate looks for the following extra strings with the intent and saves them to a global
- * storageItem that is then used to populate the form.
- *     public final static String FOOD = "com.example.testfoodstorage.foodName";
- *     public final static String MEDIUM = "com.example.testfoodstorage.foodMedium";
- *     public final static String TYPE = "com.example.testfoodstorage.foodType";
- *     public final static String UNIT = "com.example.testfoodstorage.foodUnits";
- *     public final static String LOCATION = "com.example.testfoodstorage.foodLocation";
- *     public final static String QUANTITY = "com.example.testfoodstorage.foodQuantity";
- *     public final static String SHELFLIFE = "com.example.testfoodstorage.foodShelfLife";
- *     public final static String DATE = "com.example.testfoodstorage.foodDate";
+ * OnCreate looks for the an extra strings holding JSON data for a StorageItem
+ * It will take that and save it to a local StorageItem.
  * This is to allow the dashboard and the QR code reader to populate the form for adding duplicate
  * items or to remove an item.
  *
- * Bug was fixed where the app would crash if any fields were left blank.  Default values are used
- * at this time rather than reprompting for the field.
+ * QR code generator works.  A QR code is made that has all of the form data in it so that it can
+ * be printed out and attached to home-made food storage items.
  *
  * Priority changes coming up:
  * -QR code scanner will be made operational
@@ -54,19 +51,12 @@ import java.util.Date;
  *
  *
  * @author Nathan Kempton
- * @version 2020.12.11  1.5
+ * @version 2020.12.12  1.6
  * @since 2020.11.25    1.0
  */
 
 public class DataEntryForm extends AppCompatActivity {
-    public final static String FOOD = "com.example.testfoodstorage.foodName";
-    public final static String MEDIUM = "com.example.testfoodstorage.foodMedium";
-    public final static String TYPE = "com.example.testfoodstorage.foodType";
-    public final static String UNIT = "com.example.testfoodstorage.foodUnits";
-    public final static String LOCATION = "com.example.testfoodstorage.foodLocation";
-    public final static String QUANTITY = "com.example.testfoodstorage.foodQuantity";
-    public final static String SHELFLIFE = "com.example.testfoodstorage.foodShelfLife";
-    public final static String DATE = "com.example.testfoodstorage.foodDate";
+    public final static String SIJSON = "com.example.testfoodstorage.StorageItemJSON";
 
     StorageItem newStorageItem;
     TextView textFoodName;
@@ -86,20 +76,10 @@ public class DataEntryForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nav_activity_data_entry_form);
-
+        setContentView(R.layout.activity_data_entry_form);
         if(getIntent().getExtras() != null) {
-            newStorageItem.setName(getIntent().getStringExtra(FOOD));
-            newStorageItem.setStorageMedium(getIntent().getStringExtra(MEDIUM));
-            newStorageItem.setTypeOfFood(getIntent().getStringExtra(TYPE));
-            newStorageItem.setUnitOfMeasure(getIntent().getStringExtra(UNIT));
-            newStorageItem.setLocation(getIntent().getStringExtra(LOCATION));
-            String tempString = getIntent().getStringExtra(QUANTITY);
-            newStorageItem.setQuantity(Float.parseFloat(tempString));
-            tempString = getIntent().getStringExtra(SHELFLIFE);
-            newStorageItem.setShelfLifeInMonths(Integer.parseInt(tempString));
-            tempString = getIntent().getStringExtra(DATE);
-            newStorageItem.setDateStored(LocalDate.parse(tempString));
+            String jsonString = getIntent().getStringExtra(SIJSON);
+            newStorageItem.fromString(jsonString);
         }
         Log.i("OnCreate", "Finish intents");
 
@@ -277,5 +257,44 @@ public class DataEntryForm extends AppCompatActivity {
         for(int a = 0; a < numberToAdd; a++) {
             itemToSave.saveToDatabase();
         }
+    }
+
+    public void clickedGenerageQr(View view) {
+        //make the QR code from the storage item
+        MakeQrCode newQrCode = new MakeQrCode(newStorageItem);
+        Bitmap qrBitmap = newQrCode.getBitmap();
+        Log.i("clickedGenerateQR", "made bitmap");
+        Log.i("clickedGenerateQR", Integer.toString(qrBitmap.getByteCount()));
+
+        //save the image
+        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+        File myDir = new File(root + "/QRCodes");
+        myDir.mkdirs();
+        String fname = newStorageItem.getName()
+                + newStorageItem.getStorageMedium()
+                + newStorageItem.getDateStored().toString()
+                + ".jpg";
+        File file = new File(myDir, fname);
+        if(file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            qrBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Tell the media scanner about the new file so that it is immediately available to the user
+        MediaScannerConnection.scanFile(this, new String[]{file.toString()}, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+                    public void onScanCompleted(String path, Uri uri) {
+                        Log.i("ExternalStorage", "Scanned " + path + ":");
+                        Log.i("ExternalStorage", "-> uri=" + uri);
+                    }
+                });
     }
 }
