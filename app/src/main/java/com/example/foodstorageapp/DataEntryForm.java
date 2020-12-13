@@ -3,6 +3,7 @@ package com.example.foodstorageapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,13 +38,7 @@ import java.util.Date;
  * The barcode scanner icon does nothing at this time.
  *
  * NEW TO THIS VERSION:
- * OnCreate looks for the an extra strings holding JSON data for a StorageItem
- * It will take that and save it to a local StorageItem.
- * This is to allow the dashboard and the QR code reader to populate the form for adding duplicate
- * items or to remove an item.
- *
- * QR code generator works.  A QR code is made that has all of the form data in it so that it can
- * be printed out and attached to home-made food storage items.
+ * Toasts display when items are added to the database or the QR code is generated
  *
  * Priority changes coming up:
  * -QR code scanner will be made operational
@@ -51,7 +47,7 @@ import java.util.Date;
  *
  *
  * @author Nathan Kempton
- * @version 2020.12.12  1.6
+ * @version 2020.12.12  1.7
  * @since 2020.11.25    1.0
  */
 
@@ -257,6 +253,11 @@ public class DataEntryForm extends AppCompatActivity {
         for(int a = 0; a < numberToAdd; a++) {
             itemToSave.saveToDatabase();
         }
+
+        Context context = getApplicationContext();
+        CharSequence text = "Added " + numberToAdd + " item to the inventory";
+        int duration = Toast.LENGTH_LONG;
+        Toast.makeText(context, text, duration).show();
     }
 
     public void clickedGenerageQr(View view) {
@@ -296,5 +297,10 @@ public class DataEntryForm extends AppCompatActivity {
                         Log.i("ExternalStorage", "-> uri=" + uri);
                     }
                 });
+
+        Context context = getApplicationContext();
+        CharSequence text = "Generated QR code image named " + fname;
+        int duration = Toast.LENGTH_LONG;
+        Toast.makeText(context, text, duration).show();
     }
 }
