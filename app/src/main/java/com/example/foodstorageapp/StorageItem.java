@@ -1,8 +1,11 @@
 package com.example.foodstorageapp;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
+
+import com.google.gson.Gson;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,12 +33,11 @@ import java.util.HashMap;
  *      shelfLifeInMonths to show how close to expired an item is.  This uses the java.time API
  *
  * NEW TO THIS VERSION:
- * Default values assigned at creation.  Default values are 0 for numbers and a blank space " " for
- * strings.  Have an assigned value of some sort helped with issues that were showing up on the
- * DateEntryForm
+ * makeString() method that serializes the entire StorageItem as a JSOM string
+ * fromString() method that takes a JSOM string and saves it in the different StorageItem variables
  *
  *   @author Nathan Kempton
- *   @version 2020.12.11    1.2
+ *   @version 2020.12.12    1.3
  *   @since 2020.11.25
  *
  *   @param None: This class does not take any parameters.
@@ -51,6 +53,7 @@ public class StorageItem {
     Float quantity; //Size of container
     int shelfLifeInMonths;
     LocalDate dateStored;
+    String stringDate; //Used when doing JSON
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public StorageItem() {
@@ -131,11 +134,48 @@ public class StorageItem {
         shelfLifeInMonths = newShelfLifeInMonths;
     }
 
+    public String getStringDate() { return stringDate; }
+
+    public void setStringDate(String newStringDate) {
+        stringDate = newStringDate;
+    }
+
+    public void setStringDate(LocalDate newDate) {
+        stringDate = newDate.toString();
+    }
+
     public Float getQuantity() {
         return quantity;
     }
 
     public void setQuantity(Float newQuantity) {
         quantity = newQuantity;
+    }
+
+    /*A method to convert the StorageItem into a JSON string */
+    public String makeString() {
+        //LocalDate doesn't seem to convert to JSON well, so use a string
+        this.stringDate = this.dateStored.toString();
+        Gson gson = new Gson();
+        String serilaizedStorageItem = gson.toJson(this);
+        Log.i("StorageItem.toString()", serilaizedStorageItem);
+        return serilaizedStorageItem;
+    }
+
+    /*A method to convert a JSON string to a StorageItem */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void fromString(String serializedStorageItem) {
+        Gson gson = new Gson();
+        StorageItem tempItem = new StorageItem();
+        tempItem = gson.fromJson(serializedStorageItem, StorageItem.class);
+        this.name = tempItem.getName();
+        this.storageMedium = tempItem.getStorageMedium();
+        this.typeOfFood = tempItem.getTypeOfFood();
+        this.unitOfMeasure = tempItem.getUnitOfMeasure();
+        this.location = tempItem.getLocation();
+        this.quantity = tempItem.getQuantity();
+        this.shelfLifeInMonths = tempItem.getShelfLifeInMonths();
+        this.dateStored = LocalDate.parse(tempItem.getStringDate());
+        Log.i("fromString", dateStored.toString());
     }
 }
