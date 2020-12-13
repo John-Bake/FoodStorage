@@ -10,10 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodStorageApp">
         <activity
-            android:name=".NavDrawerActivity"
-            android:label="@string/title_activity_nav_drawer"
-            android:theme="@style/Theme.FoodStorageApp.NoActionBar"></activity>
-        <activity
             android:name=".DataEntryForm"
             android:parentActivityName=".MainActivity" />
         <activity
