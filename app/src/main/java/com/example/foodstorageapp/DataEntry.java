@@ -7,6 +7,12 @@ public class DataEntry {
     String fileName;
     List<Object> importedArray;
 
+    public DataEntry() {}
+
+    public DataEntry(StorageItem item) {
+        newItem = item;
+    }
+
     public void drawImputForm() {}
 
     public void reportSuccess() {}
@@ -28,7 +34,7 @@ public class DataEntry {
    //     return importedArray;
     //}
 
-    public void saveToDatabase(StorageItem newItem) {
+    public void saveToDatabase() {
         WriteQueryFactory factory = new WriteQueryFactory();
         WriteQuery saveItem = factory.getQuery(newItem);
         saveItem.makeWriteQuery();

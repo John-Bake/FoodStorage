@@ -6,7 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class WriteQueryFactory<T> {
     public WriteQuery getQuery(T t) {
         if (t instanceof StorageItem) {
-            StorageItem item = new StorageItem((StorageItem)t);
+            StorageItem item = new StorageItem((StorageItem) t);
             return new ItemWriteQuery(item);
         }
         else if (t instanceof User) {

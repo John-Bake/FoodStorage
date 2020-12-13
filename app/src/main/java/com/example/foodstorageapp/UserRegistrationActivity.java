@@ -59,7 +59,9 @@ public class UserRegistrationActivity extends AppCompatActivity {
         String pwdConfirm = editPasswordConfirm.getText().toString();
 
         if (!validateEmail(userName)) {
-            Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.LEFT, 0, 0);
+            toast.show();
             validAccount = false;
         }
         else if (!validatePasswordLength(password)) {
