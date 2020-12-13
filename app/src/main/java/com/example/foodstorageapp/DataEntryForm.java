@@ -271,9 +271,9 @@ public class DataEntryForm extends AppCompatActivity {
             numberToAdd = 1;
         }
 
-        ItemWriteQuery itemToSave = new ItemWriteQuery(newStorageItem);
+        DataEntry itemToSave = new DataEntry(newStorageItem);
         for(int a = 0; a < numberToAdd; a++) {
-            itemToSave.makeWriteQuery();
+            itemToSave.saveToDatabase();
         }
     }
 }

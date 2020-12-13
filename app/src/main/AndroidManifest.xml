@@ -18,6 +18,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UserRegistrationActivity"
+            android:label="Account Registration"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

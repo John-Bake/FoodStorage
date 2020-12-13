@@ -2,6 +2,7 @@ package com.example.foodstorageapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -58,21 +59,24 @@ public class UserRegistrationActivity extends AppCompatActivity {
         String pwdConfirm = editPasswordConfirm.getText().toString();
 
         if (!validateEmail(userName)) {
-            Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.LEFT, 0, 0);
+            toast.show();
             validAccount = false;
         }
-        if (!validatePasswordLength(password)) {
+        else if (!validatePasswordLength(password)) {
             Toast.makeText(getApplicationContext(), "Password is too short", Toast.LENGTH_LONG).show();
             validAccount = false;
         }
-        if (!validatePasswordMatches(password, pwdConfirm)) {
+        else if (!validatePasswordMatches(password, pwdConfirm)) {
             Toast.makeText(UserRegistrationActivity.this, "Passwords don't match", Toast.LENGTH_LONG).show();
             validAccount = false;
         }
 
-        if (validAccount) {
+        else if (validAccount) {
             UserPresenter currentUser = new UserPresenter();
             currentUser.register(userName, password, pwdConfirm);
+            startActivity(new Intent(UserRegistrationActivity.this, DataEntryForm.class));
         }
     }
 }
