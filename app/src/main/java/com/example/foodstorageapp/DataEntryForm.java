@@ -2,6 +2,7 @@ package com.example.foodstorageapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -86,6 +87,7 @@ public class DataEntryForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_activity_data_entry_form);
+
         if(getIntent().getExtras() != null) {
             newStorageItem.setName(getIntent().getStringExtra(FOOD));
             newStorageItem.setStorageMedium(getIntent().getStringExtra(MEDIUM));
