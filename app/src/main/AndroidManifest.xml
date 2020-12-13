@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodStorageApp">
         <activity
+            android:name=".Dashboard"
+            android:label="Add a New Item to Storage"
+            android:parentActivityName=".DataEntryForm" />
+        <activity
+            android:name=".InventoryListActivity"
+            android:label="Add a New Item to Storage"
+            android:parentActivityName=".Dashboard" />
+        <activity
             android:name=".DataEntryForm"
             android:label="Add a New Item to Storage"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Dashboard" />
         <activity
             android:name=".UserRegistrationActivity"
             android:label="Account Registration"

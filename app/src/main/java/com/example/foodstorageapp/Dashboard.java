@@ -1,10 +1,12 @@
 package com.example.foodstorageapp;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -222,5 +224,10 @@ public class Dashboard extends AppCompatActivity {
         pieChart.setData(pieData);
         pieChart.invalidate();
 
+    }
+
+    public void goToInventory(View view) {
+        Intent inventoryIntent = new Intent(this, InventoryListActivity.class);
+        startActivity(inventoryIntent);
     }
 }

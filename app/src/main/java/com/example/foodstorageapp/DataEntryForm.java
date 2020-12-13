@@ -4,13 +4,17 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.material.internal.NavigationMenuItemView;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -102,6 +106,7 @@ public class DataEntryForm extends AppCompatActivity {
             newStorageItem.setDateStored(LocalDate.parse(tempString));
         }
         Log.i("OnCreate", "Finish intents");
+
 
         //Assign the form fields to variables
         textFoodName = findViewById(R.id.editTextFoodName);
@@ -277,5 +282,10 @@ public class DataEntryForm extends AppCompatActivity {
         for(int a = 0; a < numberToAdd; a++) {
             itemToSave.saveToDatabase();
         }
+    }
+
+    public void goToDashboard(View theButton) {
+        Intent dashboardIntent = new Intent(this, Dashboard.class);
+        startActivity(dashboardIntent);
     }
 }
