@@ -11,11 +11,11 @@
         android:theme="@style/Theme.FoodStorageApp">
         <activity
             android:name=".Dashboard"
-            android:label="Add a New Item to Storage"
+            android:label="Dashboard"
             android:parentActivityName=".DataEntryForm" />
         <activity
             android:name=".InventoryListActivity"
-            android:label="Add a New Item to Storage"
+            android:label="Inventory List"
             android:parentActivityName=".Dashboard" />
         <activity
             android:name=".DataEntryForm"
