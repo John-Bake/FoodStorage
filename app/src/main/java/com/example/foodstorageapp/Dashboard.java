@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -148,8 +149,8 @@ public class Dashboard extends AppCompatActivity {
                     for (int i = 0; i < greenInventory.getSize(); i++) {
                         StorageItem item = greenInventory.getItem(i);
                         result += item.getName() + " " + item.getQuantity() +
-                                " " + item.getUnitOfMeasure() + " Exp: " + greenDates.get(i);
-                        result += "\n";
+                                " " + item.getUnitOfMeasure() + " • Exp: " + greenDates.get(i);
+                        result += "\n\n";
                     }
                 }
                 else if (label == '1')
@@ -158,8 +159,8 @@ public class Dashboard extends AppCompatActivity {
                     for (int i = 0; i < yellowInventory.getSize(); i++) {
                         StorageItem item = yellowInventory.getItem(i);
                         result += item.getName() + " " + item.getQuantity() +
-                                " " + item.getUnitOfMeasure() + " Exp: " + yellowDates.get(i);
-                        result += "\n";
+                                " " + item.getUnitOfMeasure() + " • Exp: " + yellowDates.get(i);
+                        result += "\n\n";
                     }
                 }
                 else
@@ -168,8 +169,8 @@ public class Dashboard extends AppCompatActivity {
                     for (int i = 0; i < redInventory.getSize(); i++) {
                         StorageItem item = redInventory.getItem(i);
                         result += item.getName() + " " + item.getQuantity() +
-                                " " + item.getUnitOfMeasure() + " Exp: " + redDates.get(i);
-                        result += "\n";
+                                " " + item.getUnitOfMeasure() + " • Exp: " + redDates.get(i);
+                        result += "\n\n";
                     }
                 }
 
@@ -216,8 +217,13 @@ public class Dashboard extends AppCompatActivity {
 
         //add the legend to the chart
         Legend legend = pieChart.getLegend();
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setEnabled(false);
+        //legend.setForm(Legend.LegendForm.CIRCLE);
+        //legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+
+        Description description = pieChart.getDescription();
+        // enable or disable the description
+        description.setEnabled(false);
 
         //create pie data object
         PieData pieData = new PieData(pieDataSet);
