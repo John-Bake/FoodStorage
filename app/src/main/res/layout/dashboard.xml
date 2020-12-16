@@ -72,6 +72,7 @@
         android:layout_alignStart="@+id/legend"
         android:padding="10dp"
         android:text="More than 3 Months"
+        android:textSize="@dimen/legend_text_size"
         />
 
     <TextView
@@ -93,6 +94,7 @@
         android:layout_below="@+id/yel_dot"
         android:padding="10dp"
         android:text="Less than 1 Months"
+        android:textSize="@dimen/legend_text_size"
         />
 
     <RelativeLayout
