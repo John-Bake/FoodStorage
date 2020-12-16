@@ -17,12 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 public class InventoryListActivity extends AppCompatActivity {
-    // Array of Storage items to be replaced with real code
-    /*String[] storageItemsArray = {"Canned Peaches","Bag Rice","Chocolate Bars","Dried Apple Slices",
-            "Canned Potato Peals","Canned Oats","Soybeans", "Canned Wheat", "Canned Beans",
-    };*/
+
     //will replace with real data query once Item
     TestData testData = new TestData();
+
+    InventoryList inventoryList = new InventoryList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +33,8 @@ public class InventoryListActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.items_list);
 
         HashMap<String, String> itemDetails = new HashMap<>();
+
+
 
         itemDetails.put("Canned Peaches", "500 mL Exp: 2021-02-01 ");
         itemDetails.put("Canned Pears", "500 mL Exp: 2021-03-02 ");
