@@ -49,7 +49,7 @@ public class InventoryListActivity extends AppCompatActivity {
             String qty = item.getQuantity() + " " + item.getUnitOfMeasure();
             String location = item.getLocation();
 
-            itemDetails.put(name + " - " + container, qty + "| Location: " + location +
+            itemDetails.put(name + " - " + container, qty + " | Loc: " + location +
                             " | Exp: " + expiry);
         }
 
