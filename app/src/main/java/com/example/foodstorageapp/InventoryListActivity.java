@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ import java.util.Map;
 
 public class InventoryListActivity extends AppCompatActivity {
 
-    //will replace with real data query once Item
+    //will replace with real data query once ItemQuery is debugged
     TestData testData = new TestData();
     InventoryList invList = new InventoryList();
 
@@ -38,12 +39,18 @@ public class InventoryListActivity extends AppCompatActivity {
 
         HashMap<String, String> itemDetails = new HashMap<>();
 
+        //populate map with inventory entries
         for (int i = 0; i < invList.getSize(); i++) {
             StorageItem item = invList.getItem(i);
-            LocalDate expiry = item.getDateStored().plusMonths(item.shelfLifeInMonths);
+            LocalDate expirationDate = item.getDateStored().plusMonths(item.shelfLifeInMonths);
+            String expiry = expirationDate.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+            String name = item.getName();
+            String container = item.getStorageMedium();
             String qty = item.getQuantity() + " " + item.getUnitOfMeasure();
+            String location = item.getLocation();
 
-            itemDetails.put( invList.getItem(i).getName(), qty + " Exp: " + expiry);
+            itemDetails.put(name + " - " + container, qty + "| Location: " + location +
+                            " | Exp: " + expiry);
         }
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
@@ -51,7 +58,7 @@ public class InventoryListActivity extends AppCompatActivity {
                 R.layout.activity_listview, new String[]{"First Line", "Second Line"},
                 new int[]{R.id.item_name, R.id.item_details});
 
-
+        //populate list view from HashMap of inventory
         Iterator it = itemDetails.entrySet().iterator();
         while (it.hasNext())
         {
