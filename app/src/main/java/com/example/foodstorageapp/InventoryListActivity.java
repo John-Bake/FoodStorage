@@ -34,8 +34,6 @@ public class InventoryListActivity extends AppCompatActivity {
 
         HashMap<String, String> itemDetails = new HashMap<>();
 
-
-
         itemDetails.put("Canned Peaches", "500 mL Exp: 2021-02-01 ");
         itemDetails.put("Canned Pears", "500 mL Exp: 2021-03-02 ");
 
