@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,22 +21,30 @@ public class InventoryListActivity extends AppCompatActivity {
 
     //will replace with real data query once Item
     TestData testData = new TestData();
-
-    InventoryList inventoryList = new InventoryList();
+    InventoryList invList = new InventoryList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_activity_inventory_list);
 
-        //help with this code from https://www.youtube.com/watch?v=VYDLTBjdliY
+        for (int i = 0; i < testData.testData.size(); i++) {
+            StorageItem item = testData.getOneItem(i);
+            invList.addItem(item);
+        }
 
+        //help with this code from https://www.youtube.com/watch?v=VYDLTBjdliY
         ListView listView = (ListView) findViewById(R.id.items_list);
 
         HashMap<String, String> itemDetails = new HashMap<>();
 
-        itemDetails.put("Canned Peaches", "500 mL Exp: 2021-02-01 ");
-        itemDetails.put("Canned Pears", "500 mL Exp: 2021-03-02 ");
+        for (int i = 0; i < invList.getSize(); i++) {
+            StorageItem item = invList.getItem(i);
+            LocalDate expiry = item.getDateStored().plusMonths(item.shelfLifeInMonths);
+            String qty = item.getQuantity() + " " + item.getUnitOfMeasure();
+
+            itemDetails.put( invList.getItem(i).getName(), qty + " Exp: " + expiry);
+        }
 
         List<HashMap<String, String>> listItems = new ArrayList<>();
         SimpleAdapter adapter = new SimpleAdapter(this, listItems,
