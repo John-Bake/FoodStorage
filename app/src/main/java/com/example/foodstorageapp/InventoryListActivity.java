@@ -21,6 +21,8 @@ public class InventoryListActivity extends AppCompatActivity {
     /*String[] storageItemsArray = {"Canned Peaches","Bag Rice","Chocolate Bars","Dried Apple Slices",
             "Canned Potato Peals","Canned Oats","Soybeans", "Canned Wheat", "Canned Beans",
     };*/
+    //will replace with real data query once Item
+    TestData testData = new TestData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
