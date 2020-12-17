@@ -33,14 +33,13 @@ import java.util.HashMap;
  *      shelfLifeInMonths to show how close to expired an item is.  This uses the java.time API
  *
  * NEW TO THIS VERSION:
- * makeString() method that serializes the entire StorageItem as a JSOM string
- * fromString() method that takes a JSOM string and saves it in the different StorageItem variables
+ * Stringdate methods were changed to private
+ *
  *
  *   @author Nathan Kempton
- *   @version 2020.12.12    1.3
+ *   @version 2020.12.16    1.4
  *   @since 2020.11.25
  *
- *   @param None: This class does not take any parameters.
  */
 
 public class StorageItem {
@@ -134,13 +133,13 @@ public class StorageItem {
         shelfLifeInMonths = newShelfLifeInMonths;
     }
 
-    public String getStringDate() { return stringDate; }
+    private String getStringDate() { return stringDate; }
 
-    public void setStringDate(String newStringDate) {
+    private void setStringDate(String newStringDate) {
         stringDate = newStringDate;
     }
 
-    public void setStringDate(LocalDate newDate) {
+    private void setStringDate(LocalDate newDate) {
         stringDate = newDate.toString();
     }
 
@@ -152,7 +151,9 @@ public class StorageItem {
         quantity = newQuantity;
     }
 
-    /*A method to convert the StorageItem into a JSON string */
+    /**
+     * A method to convert a StorageItem to a JSON string
+     */
     public String makeString() {
         //LocalDate doesn't seem to convert to JSON well, so use a string
         this.stringDate = this.dateStored.toString();
@@ -162,7 +163,13 @@ public class StorageItem {
         return serilaizedStorageItem;
     }
 
-    /*A method to convert a JSON string to a StorageItem */
+    /**
+     * A method to convert a JSON string to a StorageItem
+     * It assigns the values from the JSON string to the member variables of the StorageItem running
+     * this method
+     *
+     * @param serializedStorageItem JSON string
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void fromString(String serializedStorageItem) {
         Gson gson = new Gson();
