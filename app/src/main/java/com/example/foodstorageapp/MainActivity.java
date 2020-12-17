@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, UserRegistrationActivity.class));
     }
 
-    //This is only to move from main screen to piechart, will be delete eventually
-    public void nextscreen(View view) {
-        startActivity(new Intent(MainActivity.this, Dashboard.class));
-    }
+//    //This is only to move from main screen to piechart, will be delete eventually
+//    public void nextscreen(View view) {
+//        startActivity(new Intent(MainActivity.this, Dashboard.class));
+//    }
 
 }

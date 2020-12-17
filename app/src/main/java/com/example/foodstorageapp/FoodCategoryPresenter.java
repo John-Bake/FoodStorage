@@ -13,7 +13,6 @@ public class FoodCategoryPresenter {
         typeOfFood.add("Spices");
         typeOfFood.add("Water");
         typeOfFood.add("Cleaning Supplies/Toiletries");
-        //System.out.println(typeOfFood);
     }
 
 }
