@@ -11,14 +11,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Food Name"
         android:inputType="textPersonName"
+        android:text="Food Name"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
 
     <Spinner
         android:id="@+id/editTextUnits"
@@ -38,10 +40,11 @@
         android:id="@+id/editTextStorageMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:ems="10"
-        android:hint="Storage Medium"
         android:inputType="textPersonName"
+        android:text="Storage Medium"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumberToAdd"
         app:layout_constraintStart_toEndOf="@+id/editTextNumberToAdd" />
 
@@ -50,7 +53,8 @@
         android:layout_width="239dp"
         android:layout_height="126dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +78,8 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,23 +89,23 @@
         android:id="@+id/editTextNumberShelfLifeInMonths"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toEndOf="@+id/datePicker1"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
         android:id="@+id/editTextFoodType"
-        android:layout_width="191dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Food Type"
         android:inputType="textPersonName"
+        android:text="Food Type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -109,13 +114,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="Storage Location"
         android:inputType="textPersonName"
+        android:text="Storage Location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/editTextFoodType"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -123,40 +129,29 @@
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:onClick="clickedAddButton"
-        android:text="Add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
+        android:text="Add to Food List"
+        app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <Button
-        android:id="@+id/buttonDash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:onClick="goToDashboard"
-        android:text="to Dashboard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="145dp"
-        android:layout_height="117dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:background="#FFFFFF"
+        android:onClick="clickedScanCode"
         app:layout_constraintBottom_toTopOf="@+id/editTextStorageMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextFoodName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAdd"
         app:srcCompat="@drawable/barcode" />
 
     <TextView
@@ -181,18 +176,20 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="115dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Number being stored"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberToAdd" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="215dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:text="Containter Type (can, box, bag, bottle, etc)"
         app:layout_constraintStart_toEndOf="@+id/editTextNumberToAdd"
         app:layout_constraintTop_toBottomOf="@+id/editTextStorageMedium" />
@@ -242,7 +239,7 @@
         android:layout_height="wrap_content"
         android:text="Shelf Life"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toEndOf="@+id/datePicker1"
         app:layout_constraintTop_toBottomOf="@+id/spinnerMonthYear" />
 
@@ -264,5 +261,16 @@
         android:text="Scan Barcode"
         app:layout_constraintStart_toEndOf="@+id/editTextFoodName"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="clickedGenerageQr"
+        android:text="Make QR Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAdd"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

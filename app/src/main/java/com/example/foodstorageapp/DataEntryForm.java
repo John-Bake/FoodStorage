@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -264,6 +265,7 @@ public class DataEntryForm extends AppCompatActivity {
         Toast.makeText(context, text, duration).show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void clickedGenerageQr(View view) {
         //make the QR code from the storage item
         MakeQrCode newQrCode = new MakeQrCode(newStorageItem);
@@ -279,6 +281,7 @@ public class DataEntryForm extends AppCompatActivity {
                 + newStorageItem.getStorageMedium()
                 + newStorageItem.getDateStored().toString()
                 + ".jpg";
+        Log.i("save", fname);
         File file = new File(myDir, fname);
         if(file.exists()) {
             file.delete();
@@ -292,6 +295,7 @@ public class DataEntryForm extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.i("save", "done saving");
 
         // Tell the media scanner about the new file so that it is immediately available to the user
         MediaScannerConnection.scanFile(this, new String[]{file.toString()}, null,
@@ -302,10 +306,51 @@ public class DataEntryForm extends AppCompatActivity {
                     }
                 });
 
+        Log.i("media scanner", "media scanner notified");
         Context context = getApplicationContext();
         CharSequence text = "Generated QR code image named " + fname;
         int duration = Toast.LENGTH_LONG;
         Toast.makeText(context, text, duration).show();
+
+    }
+
+    public void clickedScanCode(View view) {
+        Log.i("clickedScan", "Start");
+
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+
+        startActivityForResult(intent, 0);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,Intent resultData) {
+        if (resultCode == Activity.RESULT_OK) {
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                Log.i("on Result", "Uri: " + uri.toString());
+
+                Context context = getApplicationContext();
+
+                ScanBarCode thisCode = new ScanBarCode();
+                String incoming = thisCode.fromFile(uri, context);
+                StorageItem fromCode = new StorageItem();
+                fromCode.fromString(incoming);
+
+                //start a new activity with the data from the QR
+                DataEntryForm newDataEntryFrom = new DataEntryForm();
+
+                Intent intent = new Intent(this, newDataEntryFrom.getClass());
+                Log.i("intent second form", fromCode.makeString());
+                intent.putExtra(SIJSON, fromCode.makeString());
+                startActivity(intent);
+
+            }
+
+        }
     }
 
     public void goToDashboard(View theButton) {

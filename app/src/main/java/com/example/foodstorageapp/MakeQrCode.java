@@ -1,6 +1,12 @@
 package com.example.foodstorageapp;
 
-
+/**
+ * Class for converting a StorageItem to a QR code image
+ * Takes a StorageItem, calls the makeString method and gives that string to a MultiFormatWriter
+ * to turn it into a bitmap
+ *
+ *
+ */
 
 import android.graphics.Bitmap;
 import android.util.Log;
