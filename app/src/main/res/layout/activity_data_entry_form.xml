@@ -98,14 +98,13 @@
 
     <EditText
         android:id="@+id/editTextFoodType"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="177dp"
+        android:layout_height="41dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Food Type"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -176,20 +175,18 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:text="Number being stored"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberToAdd" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:text="Containter Type (can, box, bag, bottle, etc)"
         app:layout_constraintStart_toEndOf="@+id/editTextNumberToAdd"
         app:layout_constraintTop_toBottomOf="@+id/editTextStorageMedium" />
@@ -277,10 +274,11 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:onClick="goToDashboard"
         android:text="Go To Dashboard"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
