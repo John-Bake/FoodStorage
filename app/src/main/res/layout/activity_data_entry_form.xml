@@ -98,8 +98,8 @@
 
     <EditText
         android:id="@+id/editTextFoodType"
-        android:layout_width="177dp"
-        android:layout_height="41dp"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -110,16 +110,14 @@
 
     <EditText
         android:id="@+id/editTextLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Storage Location"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextFoodType"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
