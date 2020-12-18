@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Food Name"
+        android:hint="Food Name"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
@@ -44,7 +44,7 @@
         android:layout_marginLeft="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Storage Medium"
+        android:hint="Storage Medium"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumberToAdd"
         app:layout_constraintStart_toEndOf="@+id/editTextNumberToAdd" />
 
@@ -105,7 +105,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Food Type"
+        android:hint="Food Type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -120,7 +120,7 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Storage Location"
+        android:hint="Storage Location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextFoodType"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
